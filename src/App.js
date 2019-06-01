@@ -27,15 +27,15 @@ class App extends PureComponent {
     const newFlipps = this.state.isFlipped.slice();
     this.setState({
         prevSelectedCard: this.state.shuffledCard[cardId],
-        prevCardId: cardId
-    });
+        prevCardId: cardId 
+    }); 
 
     if (newFlipps[cardId] === false) {
       newFlipps[cardId] = !newFlipps[cardId];
-      this.setState(prevState => ({ 
+      this.setState({ 
         isFlipped: newFlipps,
-        clickCount: this.state.clickCount + 1
-      }));
+        clickCount: 2
+      });
 
       if (this.state.clickCount === 2) {
         this.setState({ clickCount: 1 });
@@ -49,7 +49,7 @@ class App extends PureComponent {
   };
 
   isCardMatch = (card1, card2, card1Id, card2Id) => {
-    if (card1 === card2) {
+    if (card1Id === card2Id) {
       const hideCard = this.state.shuffledCard.slice();
       hideCard[card1Id] = -1;
       hideCard[card2Id] = -1;
