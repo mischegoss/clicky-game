@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import Header from './components/header/Header';
 import Card from './components/card/Card';
-import Popup from "reactjs-popup";
 
-//import GameOver from './components/card/GameOver';
+
+
 
 
 
@@ -90,7 +90,7 @@ const shuffle = require('shuffle-array'),
       }, 1000)}
 console.log("Tally" + this.state.tally)
 
-    if (this.state.tally == 8) {
+    if (this.state.tally === 8) {
       this.setState({
         timerStart: false    
       })
@@ -139,7 +139,7 @@ shuffle(collection);
       
        <Header restartGame={this.restartGame} />
   
-       <p> Score: {this.tallyScore()}</p>
+       <p className="justify-center"> Score: {this.tallyScore()}</p>
     
        <div className="grid-container">
           {

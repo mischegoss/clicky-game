@@ -64,7 +64,7 @@ body {
   }
   
   .card-front {
-    /*background-image: url("smiley.png");*/
+    
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
   }
   
@@ -73,29 +73,76 @@ body {
   }
   
   .one {
-      background-image: url("./images/one.png")
+      background-image: url("./images/1.jpg")
   }
 
   .two {
-      background-color: pink;
+      background-image: url("./images/2.jpg")
   }
 
   .three {
-    background-color: orange;
+    background-image: url("./images/3.jpg")
 }
 
 .four {
-    background-color: purple;
+    background-image: url("./images/4.jpg")
 }
 
 .five {
-    background-color: green;
+    background-image: url("./images/5.jpg")
 }
 
 .six {
-    background-color: blue;
+    background-image: url("./images/6.jpg")
 }
+
+.seven {
+  background-image: url("./images/7.jpg")
+}
+
+.eight {
+  background-image: url("./images/8.jpg")
+}
+
+.nine {
+background-image: url("./images/9.jpg")
+}
+
+.ten {
+background-image: url("./images/10.jpg")
+}
+
+.eleven {
+background-image: url("./images/11.jpg")
+}
+
+.twelve {
+background-image: url("./images/12.jpg")
+}
+
+.thirteen {
+  background-image: url("./images/13.jpg")
+  }
   
+  .fourteen {
+  background-image: url("./images/14.jpg")
+  }
+  
+  .fifteen {
+  background-image: url("./images/15.jpg")
+  }
+  
+  .sixteen {
+  background-image: url("./images/16.jpg")
+  }
+ 
+
+
+
+
+
+
+
 #menu-outer {
 	height: 84px;
 
