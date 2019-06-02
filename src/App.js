@@ -22,7 +22,6 @@ const shuffle = require('shuffle-array'),
     score: 0
   };
 
-
   static duplicateCard = () => {
     return [0,1,2,3,4,5,6,7].reduce((preValue, current, index, array) => {
       return preValue.concat([current, current])
@@ -42,6 +41,9 @@ const shuffle = require('shuffle-array'),
        
 
     }); 
+    
+   console.log(this.state.score)
+   console.log(newScore)
 
     if (newFlipps[cardId] === false) {
       newFlipps[cardId] = !newFlipps[cardId];
@@ -51,7 +53,8 @@ const shuffle = require('shuffle-array'),
       });
 
       if (this.state.clickCount === 2) {
-        this.setState({ clickCount: 1 });
+        this.setState({ 
+          clickCount: 1 });
         const prevCardId = this.state.prevCardId;
         const newCard = this.state.shuffledCard[cardId];
         const previousCard = this.state.prevSelectedCard;
@@ -68,16 +71,19 @@ const shuffle = require('shuffle-array'),
       hideCard[card1Id] = -1;
       hideCard[card2Id] = -1;
       setTimeout(() => {
-        this.setState(prevState => ({
+        this.setState({
           shuffledCard: hideCard
-        }))
+        })
       }, 1000);
     } else {
       const flipBack = this.state.isFlipped.slice();
+      const randomDeduction = Math.floor(Math.random() * 10) + 5
       flipBack[card1Id] = false;
       flipBack[card2Id] = false;
       setTimeout(() => {
-        this.setState(prevState => ({ isFlipped: flipBack }));
+        this.setState({ 
+          isFlipped: flipBack,
+          score: this.state.score - randomDeduction });
       }, 1000);
     }
   };
@@ -88,13 +94,15 @@ const shuffle = require('shuffle-array'),
       shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
       clickCount: 1,
       prevSelectedCard: -1,
-      prevCardId: -1
+      prevCardId: -1,
+      score: 0
     });
   };
 
-  isGameOver = () => {
-    return this.state.isFlipped.every((element, index, array) => element !== false);
-  };
+
+tallyScore = () =>{
+  return this.state.score
+}
 
   render() {
 
@@ -107,7 +115,8 @@ shuffle(collection);
      <div>
        
        <Header restartGame={this.restartGame} />
-       { this.isGameOver() ? <GameOver restartGame={this.restartGame} /> :
+       
+       <p> Score: {this.tallyScore()}</p>
        <div className="grid-container">
           {
             this.state.shuffledCard.map((cardNumber, index) => 
@@ -125,7 +134,9 @@ shuffle(collection);
             )
           }
         </div>
-       }
+       
+
+       
      </div>
     );
   }
