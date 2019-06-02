@@ -6,7 +6,7 @@ body {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: auto auto auto auto;
-    padding: 10px 150px 10px 150px;
+    padding: 10px 3em 10px 3em;
   }
   
   .grid-header-container {
