@@ -24,7 +24,8 @@ const shuffle = require('shuffle-array'),
     prevCardId: -1,
     isClicked: false,
     score: 0,
-    //timerStart: false
+    tally: 0,
+    timerStart: false
 
   };
 
@@ -40,16 +41,20 @@ const shuffle = require('shuffle-array'),
     const cardValue = event.target.value;
     const newFlipps = this.state.isFlipped.slice();
     const newScore = this.state.score + parseInt(cardValue)
+  
     this.setState({
         prevSelectedCard: this.state.shuffledCard[cardId],
         prevCardId: cardId,
-        score: newScore
-       
+        score: newScore,
+        timerStart: true
+           
 
     }); 
     
    console.log(this.state.score)
-   console.log(newScore)
+   console.log("Score" + newScore)
+   
+
 
     if (newFlipps[cardId] === false) {
       newFlipps[cardId] = !newFlipps[cardId];
@@ -74,14 +79,24 @@ const shuffle = require('shuffle-array'),
   isCardMatch = (card1, card2, card1Id, card2Id) => {
     if (card1 === card2) {
       const hideCard = this.state.shuffledCard.slice();
+      const newTally = this.state.tally + 1
       hideCard[card1Id] = -1;
       hideCard[card2Id] = -1;
       setTimeout(() => {
         this.setState({
-          shuffledCard: hideCard
+          shuffledCard: hideCard,
+          tally: newTally
         })
-      }, 1000);
-    } else {
+      }, 1000)}
+console.log("Tally" + this.state.tally)
+
+    if (this.state.tally == 8) {
+      this.setState({
+        timerStart: false    
+      })
+
+    }
+     else {
       const flipBack = this.state.isFlipped.slice();
       const randomDeduction = Math.floor(Math.random() * 10) + 5
       flipBack[card1Id] = false;
@@ -120,54 +135,12 @@ shuffle(collection);
     return (
      <div>
 
-<Popup trigger={<button className="button directions"> HOW TO PLAY </button>} modal>
-    {close => (
-      <div className="modal">
-        <a className="close" onClick={close}>
-          &times;
-        </a>
-        <div className="header"> Modal Title </div>
-        <div className="content">
-          {' '}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
-          delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
-          commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
-          explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
-        </div>
-        <div className="actions">
-          <Popup
-            trigger={<button className="button"> Trigger </button>}
-            position="top center"
-            closeOnDocumentClick
-          >
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              magni omnis delectus nemo, maxime molestiae dolorem numquam
-              mollitia, voluptate ea, accusamus excepturi deleniti ratione
-              sapiente! Laudantium, aperiam doloribus. Odit, aut.
-            </span>
-          </Popup>
-          <button
-            className="button"
-            onClick={() => {
-              console.log('modal closed ')
-              close()
-            }}
-          >
-            close modal
-          </button>
-        </div>
-      </div>
-    )}
-  </Popup> 
+
       
        <Header restartGame={this.restartGame} />
   
-       
        <p> Score: {this.tallyScore()}</p>
+    
        <div className="grid-container">
           {
             this.state.shuffledCard.map((cardNumber, index) => 

@@ -32,11 +32,7 @@ body {
     text-align: center;
   }
   
-  .timer {
-    color: #5168e9;
-    font-size: 20px;
-    font-weight: bold;
-  }
+  
   
   .restart-button, .directions {
     width: 15em;
@@ -44,7 +40,8 @@ body {
     color: white;
     background-color: #5168e9;
     border: 0;
-    margin-left: 20px;
+    margin: 10px 20px 10px 20px;
+   
     
   }
   
@@ -99,3 +96,23 @@ body {
     background-color: blue;
 }
   
+#menu-outer {
+	height: 84px;
+
+}
+
+
+
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+.horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+	 li {
+		display: inline;
+	}
