@@ -38,12 +38,14 @@ body {
     font-weight: bold;
   }
   
-  .restart-button {
+  .restart-button, .directions {
     width: 15em;
     height: 3em;
     color: white;
     background-color: #5168e9;
     border: 0;
+    margin-left: 20px;
+    
   }
   
   .game-status-text {
@@ -74,7 +76,7 @@ body {
   }
   
   .one {
-      background-color: orange;
+      background-image: url("./images/one.png")
   }
 
   .two {

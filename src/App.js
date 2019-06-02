@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import Header from './components/header/Header';
 import Card from './components/card/Card';
-import GameOver from './components/card/GameOver';
+import Popup from "reactjs-popup";
+
+//import GameOver from './components/card/GameOver';
+
+
 
 import './styles/main.css';
 
@@ -19,7 +23,9 @@ const shuffle = require('shuffle-array'),
     prevSelectedCard: -1,
     prevCardId: -1,
     isClicked: false,
-    score: 0
+    score: 0,
+    //timerStart: false
+
   };
 
   static duplicateCard = () => {
@@ -113,8 +119,53 @@ shuffle(collection);
 
     return (
      <div>
-       
+
+<Popup trigger={<button className="button directions"> HOW TO PLAY </button>} modal>
+    {close => (
+      <div className="modal">
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+        <div className="header"> Modal Title </div>
+        <div className="content">
+          {' '}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
+          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
+          delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
+          commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
+          explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
+        </div>
+        <div className="actions">
+          <Popup
+            trigger={<button className="button"> Trigger </button>}
+            position="top center"
+            closeOnDocumentClick
+          >
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+              magni omnis delectus nemo, maxime molestiae dolorem numquam
+              mollitia, voluptate ea, accusamus excepturi deleniti ratione
+              sapiente! Laudantium, aperiam doloribus. Odit, aut.
+            </span>
+          </Popup>
+          <button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ')
+              close()
+            }}
+          >
+            close modal
+          </button>
+        </div>
+      </div>
+    )}
+  </Popup> 
+      
        <Header restartGame={this.restartGame} />
+  
        
        <p> Score: {this.tallyScore()}</p>
        <div className="grid-container">
