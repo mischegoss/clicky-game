@@ -83,6 +83,17 @@ class App extends PureComponent {
   };
 
   render() {
+
+
+    const shuffle = require('shuffle-array'),
+    collection = ['one','two','three','four','five', 'six', 'one','two','three','four','five', 'six', 'one','two','three','four','five', 'six'];
+ 
+shuffle(collection);
+ 
+console.log(collection);
+
+
+
     return (
      <div>
        <Header restartGame={this.restartGame} />
@@ -93,6 +104,7 @@ class App extends PureComponent {
               <Card
                 key={index} 
                 id={index} 
+                cardImage= {collection[index]}
                 cardNumber={cardNumber} 
                 isFlipped={this.state.isFlipped[index]} 
                 handleClick={this.handleClick}     
@@ -107,4 +119,5 @@ class App extends PureComponent {
 }
 
 export default App;
+
 

@@ -65,7 +65,7 @@ body {
   }
   
   .card-front {
-    background-image: url("smiley.png");
+    /*background-image: url("smiley.png");*/
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
   }
   
@@ -73,4 +73,7 @@ body {
     font-weight: bold;
   }
   
+  .one, .two, .three, .four, .five, .six {
+      background-color: orange;
+  }
   
