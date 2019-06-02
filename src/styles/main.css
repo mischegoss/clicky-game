@@ -73,7 +73,27 @@ body {
     font-weight: bold;
   }
   
-  .one, .two, .three, .four, .five, .six {
+  .one {
       background-color: orange;
   }
+
+  .two {
+      background-color: pink;
+  }
+
+  .three {
+    background-color: orange;
+}
+
+.four {
+    background-color: purple;
+}
+
+.five {
+    background-color: green;
+}
+
+.six {
+    background-color: blue;
+}
   

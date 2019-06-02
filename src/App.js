@@ -5,15 +5,23 @@ import GameOver from './components/card/GameOver';
 
 import './styles/main.css';
 
-class App extends PureComponent {
+const shuffle = require('shuffle-array'),
+    collection = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'];
+
+
+
+    class App extends PureComponent {
 
   state = { 
     isFlipped: Array(16).fill(false),
     shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
     clickCount: 1,
     prevSelectedCard: -1,
-    prevCardId: -1
+    prevCardId: -1,
+    isClicked: false,
+    score: 0
   };
+
 
   static duplicateCard = () => {
     return [0,1,2,3,4,5,6,7].reduce((preValue, current, index, array) => {
@@ -24,10 +32,15 @@ class App extends PureComponent {
   handleClick = event => {
     event.preventDefault();
     const cardId = event.target.id;
+    const cardValue = event.target.value;
     const newFlipps = this.state.isFlipped.slice();
+    const newScore = this.state.score + parseInt(cardValue)
     this.setState({
         prevSelectedCard: this.state.shuffledCard[cardId],
-        prevCardId: cardId 
+        prevCardId: cardId,
+        score: newScore
+       
+
     }); 
 
     if (newFlipps[cardId] === false) {
@@ -46,10 +59,11 @@ class App extends PureComponent {
         this.isCardMatch(previousCard, newCard, prevCardId, cardId);
       }
     }
+  
   };
 
   isCardMatch = (card1, card2, card1Id, card2Id) => {
-    if (card1Id === card2Id) {
+    if (card1 === card2) {
       const hideCard = this.state.shuffledCard.slice();
       hideCard[card1Id] = -1;
       hideCard[card2Id] = -1;
@@ -85,17 +99,13 @@ class App extends PureComponent {
   render() {
 
 
-    const shuffle = require('shuffle-array'),
-    collection = ['one','two','three','four','five', 'six', 'one','two','three','four','five', 'six', 'one','two','three','four','five', 'six'];
- 
+    
 shuffle(collection);
  
-console.log(collection);
-
-
 
     return (
      <div>
+       
        <Header restartGame={this.restartGame} />
        { this.isGameOver() ? <GameOver restartGame={this.restartGame} /> :
        <div className="grid-container">
@@ -107,7 +117,10 @@ console.log(collection);
                 cardImage= {collection[index]}
                 cardNumber={cardNumber} 
                 isFlipped={this.state.isFlipped[index]} 
-                handleClick={this.handleClick}     
+                handleClick={this.handleClick} 
+               
+                
+                  
               />
             )
           }
