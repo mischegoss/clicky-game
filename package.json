@@ -10,7 +10,7 @@
     "react-bootstrap": "^1.0.0-beta.9",
     "react-card-flip": "^0.7.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "reactjs-popup": "^1.4.1",
     "shuffle-array": "^1.0.1"
   },
